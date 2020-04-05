@@ -10,7 +10,7 @@ num_factors = 2
 epoch = 100
 learning_rate = 0.01
 
-raw_data = open('London_Attractions_Complete_Review.csv').readlines()
+raw_data = open('user_item_rating.csv').readlines()
 
 # make English text clean
 def clean_en_text(text):
