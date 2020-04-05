@@ -6,12 +6,12 @@ from pyfm import pylibfm
 from sklearn.metrics import log_loss
 from sklearn.feature_extraction import DictVectorizer
 
-number_data = 3000
 train_percentage = 0.8
+num_factors = 2
+epoch = 100
+learning_rate = 0.01
 
-os.chdir('C:/Users/wcks1/Desktop/找教授/tree_enhanced_embedding_model-master/Data/Raw/London_Attractions_Complete_Review.csv')
 raw_data = open('London_Attractions_Complete_Review.csv').readlines()
-raw_data = raw_data[0:number_data]
 
 # make English text clean
 def clean_en_text(text):
@@ -72,7 +72,7 @@ x = sparse.csr_matrix(train_data)
 
 y = rating_to_binary(y)
 
-fm = pylibfm.FM(num_factors=2, num_iter=100, verbose=True, task="classification", initial_learning_rate=0.01, learning_rate_schedule="optimal")
+fm = pylibfm.FM(num_factors=num_factors, num_iter=epoch, verbose=True, task="classification", initial_learning_rate=learning_rate, learning_rate_schedule="optimal")
 fm.fit(x[0:int(train_percentage*x.shape[0])],y[0:int(train_percentage*len(y))])
 
 preds = fm.predict(x[int(train_percentage*x.shape[0]):x.shape[0]-1])
