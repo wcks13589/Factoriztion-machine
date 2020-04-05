@@ -65,10 +65,9 @@ x = v.fit_transform(x)
 
 train_data = np.zeros((x.shape[0],x.shape[1]+data_tag.shape[1]))
 
-for i , j  in enumerate(x.A):
-    train_data[i] = np.concatenate([j,data_tag[i]])
+for i , feature  in enumerate(x.A):
+    train_data[i] = np.concatenate([feature,data_tag[i]])
 x = sparse.csr_matrix(train_data)
-
 y = rating_to_binary(y)
 
 fm = pylibfm.FM(num_factors=num_factors, num_iter=epoch, verbose=True, task="classification", initial_learning_rate=learning_rate, learning_rate_schedule="optimal")
