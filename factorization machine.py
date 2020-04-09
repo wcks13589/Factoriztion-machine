@@ -193,9 +193,9 @@ def create_x_data(matrix, user_dic, item_dic):
 # 
 # =============================================================================
 
-raw_data = open('London_Attractions_Complete_Review.csv').readlines()
-create_csv(raw_data, 'Data_Lon.csv')
-data = open('Data_Lon.csv').readlines()
+raw_data = open('raw_data.csv').readlines()
+create_csv(raw_data, 'data.csv')
+data = open('data_Lon.csv').readlines()
 
 # Collect all styles, atttributes and tags
 style_list = collect_style_attribute(data, 4).remove('')
