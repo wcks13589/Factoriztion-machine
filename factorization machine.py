@@ -7,7 +7,7 @@ from sklearn.feature_extraction import DictVectorizer
 def collect_item(data,feature_index,delimiter):
     items = []
     for index , row in enumerate(data[1:]):
-        print('Collecting item now:' , index)
+        print('Collecting Item Now:' , index)
         feature = line.split(delimiter)
         if feature[feature_index] not in items:
             items.append(feature[feature_index])
@@ -20,7 +20,7 @@ def dis_item_list(data,feature_index,delimiter):
         items = collect_item(data,feature_index,delimiter)
         item = [0 for j in range(len(items))]
         for index , line in enumerate(data[1:]):
-            print('Sum item vector now:' , index)
+            print('Sum Item Vector Now:' , index)
             feature = line.split(delimiter)
             item[items.index(feature[feature_index])] += 1
         count = []
@@ -40,7 +40,7 @@ def create_csv(data, path):
         ord_user_index = []
         ord_item_index = []
         for index , line in enumerate(data[1:]):
-            print('Saving data now:' , index)
+            print('Saving Data Now:' , index)
             feature = line.split('\t')
             if feature[2] in dis_list:
                 continue
@@ -82,7 +82,7 @@ def get_max(data):
 def interaction_matrix(data):
     matrix = np.zeros((get_max(data)),dtype=int)
     for index , row in enumerate(data[1:]):
-        print('building matrix now:' , index)
+        print('Building Matrix Now:' , index)
         user_id , item_id = int(row.split('|')[0]) , int(row.split('|')[7])
         matrix[user_id][item_id] = 1
     return matrix
@@ -128,7 +128,7 @@ def Load_data(data):
     item_attribute = sparse.csr_matrix((1,len(attribute_list)))
     item_tag = sparse.csr_matrix((1,len(tag_list)))
     for index , row in enumerate(data[1:]):
-        print('Loading data now:', index)
+        print('Loading Data Now:', index)
         feature = row.split('|')
         style = feature[4].strip('[').strip(']').split(', ')
         style_vector = create_vector(style,style_list)
@@ -157,7 +157,7 @@ def user_item_vector_dic(data,user_data,item_data):
         feature = row.split('|')
         user_dic[int(feature[0])] = user_data[index]
         item_dic[int(feature[7])] = item_data[index]
-        print('Creating user and item vector Now:', index)
+        print('Creating User and Item Vector Now:', index)
     return user_dic, item_dic
 
 def create_x_data(matrix, user_dic, item_dic):
@@ -170,7 +170,7 @@ def create_x_data(matrix, user_dic, item_dic):
             x_data = sparse.vstack((x_data, x))
             y_data.append(int(element))
             print('Creating X_data Now:', user_id , item_id)
-    return x_data[1:].tocsr(), np.array(y_data)
+    return x_data.tocsr()[1:], np.array(y_data)
 
 # =============================================================================
 # def create_x_data(matrix, user_dic, item_dic):
