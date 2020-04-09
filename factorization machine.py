@@ -170,7 +170,7 @@ def create_x_data(matrix, user_dic, item_dic):
             x_data = sparse.vstack((x_data, x))
             y_data.append(int(element))
             print('Creating X_data Now:', user_id , item_id)
-    return x_data.tocsr(), np.array(y_data)
+    return x_data[1:].tocsr(), np.array(y_data)
 
 # =============================================================================
 # def create_x_data(matrix, user_dic, item_dic):
@@ -225,7 +225,7 @@ sparse.save_npz('x_data.npz', x_data)
 # Set Factorizaion machine parameters
 num_factors = 5
 epoch = 200
-learning_rate = 0.1
+learning_rate = 0.001
 
 # Build model and Training
 fm = pylibfm.FM(num_factors=num_factors, num_iter=epoch, verbose=True, task="classification", initial_learning_rate=learning_rate, learning_rate_schedule="optimal")
