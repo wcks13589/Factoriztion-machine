@@ -222,7 +222,7 @@ sparse.save_npz('user_data.npz', user_data)
 sparse.save_npz('item_data.npz', item_data)
 sparse.save_npz('x_data.npz', x_data)
 
-# Set Factorizaion machine parameter
+# Set Factorizaion machine parameters
 num_factors = 5
 epoch = 200
 learning_rate = 0.1
