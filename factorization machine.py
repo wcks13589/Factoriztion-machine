@@ -32,7 +32,7 @@ def dis_item_list(data,feature_index,delimiter):
             dis_item.append(items[i])
     return dis_item
 
-def create_csv(data, path):  #清理不要的資料欄位與重新給予user ID與item ID
+def create_csv(data, path): 
     import csv
     with open(path,'w',newline='') as f:
         csv_write = csv.writer(f, delimiter = '|')
@@ -193,7 +193,6 @@ def create_x_data(matrix, user_dic, item_dic):
 # 
 # =============================================================================
 
-os.chdir('C:/Users/wcks1/Desktop/找教授/tree_enhanced_embedding_model-master/Data/Raw/London_Attractions_Complete_Review.csv')
 raw_data = open('London_Attractions_Complete_Review.csv').readlines()
 create_csv(raw_data, 'Data_Lon.csv')
 data = open('Data_Lon.csv').readlines()
